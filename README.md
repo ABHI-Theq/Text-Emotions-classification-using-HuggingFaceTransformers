@@ -1,126 +1,104 @@
-🎯 Text Emotions Detection using HuggingFace Transformers
+## 🎯 Text Emotions Detection using HuggingFace Transformers
 
-📌 Overview
+### 📌 Overview
 
-This project implements a text emotion detection system using HuggingFace Transformers. The goal is to classify the emotions expressed in a given piece of text using state-of-the-art Natural Language Processing (NLP) models. The notebook leverages the transformers and datasets libraries from HuggingFace and evaluates multiple models for performance comparison.
+This project implements a **text emotion detection system** using **HuggingFace Transformers**. The goal is to classify the emotions expressed in a given piece of text using state-of-the-art Natural Language Processing (NLP) models. The notebook leverages the `transformers` and `datasets` libraries from HuggingFace and evaluates multiple models for performance comparison.
 
-📂 Dataset
+### 📂 Dataset
 
-Dataset Used: emotion dataset from HuggingFace Datasets
+* **Dataset Used:** `emotion` dataset from HuggingFace Datasets
+* **Labels:** 😢 *sadness*, 😊 *joy*, ❤️ *love*, 😡 *anger*, 😨 *fear*, 😲 *surprise*
+* **Structure:** Each example in the dataset contains a piece of text and its corresponding emotion label.
 
-Labels: 😢 sadness, 😊 joy, ❤️ love, 😡 anger, 😨 fear, 😲 surprise
+### 🧰 Key Libraries Used
 
-Structure: Each example in the dataset contains a piece of text and its corresponding emotion label.
+* `transformers`
+* `datasets`
+* `sklearn`
+* `matplotlib`
+* `pandas`
+* `seaborn`
+* `torch`
+* `numpy`
 
-🧰 Key Libraries Used
+### 🔄 Steps Implemented
 
-transformers
+#### 1️⃣ Dataset Loading and Exploration
 
-datasets
+* Used `load_dataset("emotion")` to fetch the dataset.
+* Explored distribution of emotion labels.
 
-sklearn
+#### 2️⃣ Tokenization
 
-matplotlib
+* Tokenized the text data using different pretrained models:
 
-pandas
+  * `distilbert-base-uncased`
+  * `bert-base-uncased`
+  * `bert-base-cased`
+  * `roberta-base`
+* Applied truncation to handle long texts.
 
-seaborn
+#### 3️⃣ Data Preprocessing
 
-torch
+* Encoded dataset using tokenizers.
+* Formatted dataset to return PyTorch tensors.
 
-numpy
+#### 4️⃣ Model Training
 
-🔄 Steps Implemented
+* Trained models using `Trainer` and `TrainingArguments` from `transformers`.
+* Parameters included:
 
-1️⃣ Dataset Loading and Exploration
+  * Batch sizes
+  * Learning rate scheduler
+  * Number of epochs
+  * Evaluation strategy
 
-Used load_dataset("emotion") to fetch the dataset.
+#### 5️⃣ Evaluation
 
-Explored distribution of emotion labels.
+* Metrics used: **accuracy**, **precision**, **recall**, and **F1-score**
+* Visualized:
 
-2️⃣ Tokenization
+  * Confusion matrix
+  * Classification report
+* Compared performance of different models
 
-Tokenized the text data using different pretrained models:
+#### 6️⃣ Model Testing
 
-distilbert-base-uncased
+* Performed inference on test samples
+* Evaluated predictions vs ground truth labels
 
-bert-base-uncased
+#### 7️⃣ Saving and Loading Models
 
-bert-base-cased
+* Saved fine-tuned models using `.save_pretrained()`
+* Reloaded them with `from_pretrained()`
 
-roberta-base
+#### 8️⃣ Plotting
 
-Applied truncation to handle long texts.
+* Visualized label distribution and confusion matrix using `matplotlib` and `seaborn`
 
-3️⃣ Data Preprocessing
+### 🏆 Model Performance Summary
 
-Encoded dataset using tokenizers.
+* **Best Performing Model:** `BERT-base-uncased`
+* **Highlights:**
 
-Formatted dataset to return PyTorch tensors.
+  * High precision and recall for major classes like *joy* and *sadness*
+  * Slightly lower performance for minority classes like *surprise* and *love*
 
-4️⃣ Model Training
+### ⚙️ How to Run
 
-Trained models using Trainer and TrainingArguments from transformers.
+1. **Install dependencies:**
 
-Parameters included:
+   ```bash
+   pip install transformers datasets sklearn matplotlib pandas seaborn torch
+   ```
+2. **Run the notebook:** `Text_Emotions_detection_using_huggingFaceTransformers.ipynb`
 
-Batch sizes
+### ✅ Conclusion
 
-Learning rate scheduler
+This notebook demonstrates the effectiveness of **transformer-based models** for **multi-class emotion detection**. Fine-tuning pretrained models like **BERT** significantly improves classification accuracy compared to traditional methods.
 
-Number of epochs
+---
 
-Evaluation strategy
-
-5️⃣ Evaluation
-
-Metrics used: accuracy, precision, recall, and F1-score
-
-Visualized:
-
-Confusion matrix
-
-Classification report
-
-Compared performance of different models
-
-6️⃣ Model Testing
-
-Performed inference on test samples
-
-Evaluated predictions vs ground truth labels
-
-7️⃣ Saving and Loading Models
-
-Saved fine-tuned models using .save_pretrained()
-
-Reloaded them with from_pretrained()
-
-8️⃣ Plotting
-
-Visualized label distribution and confusion matrix using matplotlib and seaborn
-
-🏆 Model Performance Summary
-
-Best Performing Model: BERT-base-uncased
-
-Highlights:
-
-High precision and recall for major classes like joy and sadness
-
-Slightly lower performance for minority classes like surprise and love
-
-⚙️ How to Run
-
-Install dependencies:
-
-pip install transformers datasets sklearn matplotlib pandas seaborn torch
-
-Run the notebook: Text_Emotions_detection_using_huggingFaceTransformers.ipynb
-
-✅ Conclusion
-
-This notebook demonstrates the effectiveness of transformer-based models for multi-class emotion detection. Fine-tuning pretrained models like BERT significantly improves classification accuracy compared to traditional methods.
-
-👨‍💻 Author: Abhishek Sharma🌐 GitHub: ABHI-Theq🗓️ Last Updated: (Add Date)
-
+**👨‍💻 Author:** Abhishek Sharma
+**🌐 GitHub:** [ABHI-Theq](https://github.com/ABHI-Theq)
+**🗓️ Last Updated:** *(Add Date)*
